@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ProductHuntViewer</string>
+    <string name="place_holder">PLACE_HOLDER</string>
+
+    <string name="error_message">Error please try again</string>
+    <string name="error_button">Try Again</string>
+</resources>

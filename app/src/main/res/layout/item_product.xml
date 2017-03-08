@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/productItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="16dp">
+    <TextView
+        android:id="@+id/productName"
+        android:textAppearance="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/place_holder"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/productThumbnail" />
+
+    <TextView
+        android:id="@+id/productDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/place_holder"
+        android:textAppearance="@style/Description"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/productName"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/productThumbnail" />
+
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/productUpVotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/place_holder"
+        android:textSize="16sp"
+        android:layout_below="@+id/productDescription"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
+
+    <ImageView
+        android:id="@+id/productThumbnail"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
