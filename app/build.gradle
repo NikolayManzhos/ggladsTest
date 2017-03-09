@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.defaultapps.newsreader"
+        applicationId "com.defaultapps.producthuntviewer"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -36,7 +36,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "com.android.support:appcompat-v7:$rootProject.appCompatVersion"
-    compile 'com.takisoft.fix:preference-v7:25.2.0.0'
     compile "com.android.support:cardview-v7:$rootProject.cardViewVersion"
     compile "com.android.support:design:$rootProject.designVersion"
     compile "junit:junit:$rootProject.junitVersion"

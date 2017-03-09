@@ -135,6 +135,15 @@ public class ProductsListInteractor {
         }
     }
 
+    public void setCategory(String category, int position) {
+        sharedPreferencesManager.setCategory(category.toLowerCase());
+        sharedPreferencesManager.setCategoryNumber(position);
+    }
+
+    public int getCategory() {
+        return sharedPreferencesManager.getCategoryNumber();
+    }
+
     private void parseData(PostsResponse posts) {
         postList = new ArrayList<>(posts.getPosts());
     }

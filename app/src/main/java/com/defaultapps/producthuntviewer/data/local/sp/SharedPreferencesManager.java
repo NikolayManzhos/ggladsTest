@@ -13,6 +13,7 @@ public class SharedPreferencesManager {
 
     private final String CACHE_TIME = "cache_exp_time";
     private final String CATEGORY_CODE = "category_code";
+    private final String CATEGORY_NUMB = "category_number";
     private final String FORCE_LOAD = "force_load";
     private final String FIRST_TIME_USER = "first_time";
 
@@ -35,6 +36,14 @@ public class SharedPreferencesManager {
 
     public void setCategory(String sourceCode) {
         sharedPreferencesHelper.putString(CATEGORY_CODE, sourceCode);
+    }
+
+    public int getCategoryNumber() {
+        return sharedPreferencesHelper.getInt(CATEGORY_NUMB);
+    }
+
+    public void setCategoryNumber(int categoryNumber) {
+        sharedPreferencesHelper.putInt(CATEGORY_NUMB, categoryNumber);
     }
 
     public boolean getForceLoadStatus() {

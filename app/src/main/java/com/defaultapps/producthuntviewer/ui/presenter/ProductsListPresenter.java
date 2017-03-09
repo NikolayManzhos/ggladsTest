@@ -9,4 +9,6 @@ public interface ProductsListPresenter extends MvpPresenter<ProductsListViewImpl
     void requestUpdate();
     void requestCache();
     void restoreViewState();
+    void setCurrentCategory(String category, int position);
+    int getCurrentCategory();
 }

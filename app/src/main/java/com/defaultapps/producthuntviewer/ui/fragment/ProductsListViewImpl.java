@@ -12,23 +12,30 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.defaultapps.producthuntviewer.App;
 import com.defaultapps.producthuntviewer.R;
 import com.defaultapps.producthuntviewer.data.model.post.Post;
+import com.defaultapps.producthuntviewer.ui.adapter.CategoriesSpinnerAdapter;
 import com.defaultapps.producthuntviewer.ui.adapter.ProductsAdapter;
 import com.defaultapps.producthuntviewer.ui.presenter.ProductsListPresenterImpl;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.MaterialIcons;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,6 +50,8 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
 
     private Unbinder unbinder;
 
+    private List<Post> posts;
+    private List<String> categories;
 
     @BindView(R.id.productsRecycler)
     RecyclerView productsRecycler;
@@ -59,23 +68,30 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.spinner)
+    Spinner toolbarSpinner;
+
     @Inject
     ProductsAdapter productsAdapter;
 
     @Inject
+    CategoriesSpinnerAdapter categoriesSpinnerAdapter;
+
+    @Inject
     ProductsListPresenterImpl productsListPresenter;
 
-    private OnPostClickCallback onPostClickCallback;
+    private OnProductsListCallback onProductsListCallback;
 
-    public interface OnPostClickCallback {
-        void onPostClick();
+    public interface OnProductsListCallback {
+        void onPostClick(Post post);
         void onSettingsClick();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        onPostClickCallback = (OnPostClickCallback) context;
+        onProductsListCallback = (OnProductsListCallback) context;
+        categories = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.categories)));
     }
 
     @Nullable
@@ -91,6 +107,7 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
         initToolbar();
+        initSpinner();
         initRecyclerView();
         productsListPresenter.setView(this);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -99,6 +116,9 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
             productsListPresenter.restoreViewState();
         } else {
             productsListPresenter.requestCache();
+        }
+        if (savedInstanceState != null) {
+            Log.d("LIST", "SAVEDSTATE");
         }
     }
 
@@ -115,12 +135,11 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
-                onPostClickCallback.onSettingsClick();
-                break;
+                onProductsListCallback.onSettingsClick();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -133,7 +152,7 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
     @Override
     public void onDetach() {
         super.onDetach();
-        onPostClickCallback = null;
+        onProductsListCallback = null;
     }
 
     @Override
@@ -143,7 +162,7 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
 
     @Override
     public void onProductClick(int position) {
-        onPostClickCallback.onPostClick();
+        onProductsListCallback.onPostClick(posts.get(position));
     }
 
     @OnClick(R.id.errorButton)
@@ -186,6 +205,7 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
     @Override
     public void updateView(List<Post> postList) {
         productsAdapter.setData(postList);
+        posts = new ArrayList<>(postList);
     }
 
     private void initRecyclerView() {
@@ -196,6 +216,25 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
         scaleInAnimationAdapter.setFirstOnly(false);
         productsRecycler.addItemDecoration(dividerItemDecoration);
         productsRecycler.setAdapter(scaleInAnimationAdapter);
+    }
+
+    private void initSpinner() {
+        categoriesSpinnerAdapter.setData(categories);
+        toolbarSpinner.setAdapter(categoriesSpinnerAdapter);
+        toolbarSpinner.setSelection(productsListPresenter.getCurrentCategory(), false);
+        toolbarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(getContext().getApplicationContext(), categories.get(position), Toast.LENGTH_SHORT).show();
+                productsListPresenter.setCurrentCategory(categories.get(position), position);
+                productsListPresenter.requestUpdate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void initToolbar() {

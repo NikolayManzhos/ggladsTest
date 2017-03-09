@@ -1,7 +1,32 @@
 <resources>
     <string name="app_name">ProductHuntViewer</string>
     <string name="place_holder">PLACE_HOLDER</string>
+    <string name="button_get">Get it</string>
 
     <string name="error_message">Error please try again</string>
     <string name="error_button">Try Again</string>
+
+    <array name="categories">
+        <item>Tech</item>
+        <item>Books</item>
+        <item>Games</item>
+        <item>Podcasts</item>
+    </array>
+
+    <!--Entries for time preference -->
+    <string-array name="time">
+        <item>1 Hours</item>
+        <item>2 Hours</item>
+        <item>4 Hours</item>
+        <item>8 Hours</item>
+    </string-array>
+
+    <!--Values for time preference in ms-->
+    <string-array name="timeValues">
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>14400000</item>
+        <item>28800000</item>
+    </string-array>
+    <string name="time_default">3600000</string>
 </resources>

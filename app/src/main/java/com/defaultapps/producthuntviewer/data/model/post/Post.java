@@ -3,7 +3,7 @@ package com.defaultapps.producthuntviewer.data.model.post;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Post {
+public class Post{
 
     @SerializedName("category_id")
     @Expose

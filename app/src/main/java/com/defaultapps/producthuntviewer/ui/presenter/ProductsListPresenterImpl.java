@@ -74,6 +74,16 @@ public class ProductsListPresenterImpl implements ProductsListPresenter, Product
     }
 
     @Override
+    public void setCurrentCategory(String category, int position) {
+        productsListInteractor.setCategory(category, position);
+    }
+
+    @Override
+    public int getCurrentCategory() {
+        return productsListInteractor.getCategory();
+    }
+
+    @Override
     public void onSuccess(List<Post> postList) {
         if (view != null) {
             view.updateView(postList);

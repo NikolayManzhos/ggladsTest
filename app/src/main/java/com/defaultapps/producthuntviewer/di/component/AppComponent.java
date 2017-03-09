@@ -14,5 +14,4 @@ import dagger.Component;
 public interface AppComponent {
     void inject(ProductsListViewImpl productsListViewImpl);
     void inject(MainActivity mainActivity);
-    void inject(ProductDescriptionViewImpl productDescriptionView);
 }

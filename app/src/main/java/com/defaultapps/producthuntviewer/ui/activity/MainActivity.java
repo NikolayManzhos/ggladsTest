@@ -10,13 +10,14 @@ import android.os.Bundle;
 import com.defaultapps.producthuntviewer.App;
 import com.defaultapps.producthuntviewer.R;
 import com.defaultapps.producthuntviewer.data.local.sp.SharedPreferencesManager;
+import com.defaultapps.producthuntviewer.data.model.post.Post;
 import com.defaultapps.producthuntviewer.ui.fragment.ProductDescriptionViewImpl;
 import com.defaultapps.producthuntviewer.ui.fragment.ProductsListViewImpl;
-import com.defaultapps.producthuntviewer.ui.fragment.SettingsView;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements ProductsListViewImpl.OnPostClickCallback {
+public class MainActivity extends AppCompatActivity implements ProductsListViewImpl.OnProductsListCallback, ProductDescriptionViewImpl.ProductDescriptionViewCallback {
 
     @Inject
     SharedPreferencesManager sharedPreferencesManager;
@@ -37,13 +38,28 @@ public class MainActivity extends AppCompatActivity implements ProductsListViewI
     }
 
     @Override
-    public void onPostClick() {
-        replaceFragment(new ProductDescriptionViewImpl());
+    public void onPostClick(Post post) {
+        ProductDescriptionViewImpl productDescriptionView = new ProductDescriptionViewImpl();
+        Bundle bundle = new Bundle();
+        Gson gson = new Gson();
+        String json = gson.toJson(post);
+        bundle.putSerializable("Post", json);
+        productDescriptionView.setArguments(bundle);
+        replaceFragment(productDescriptionView);
     }
 
     @Override
     public void onSettingsClick() {
-//        replaceFragment(new SettingsView());
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void openLink(String productName, String url) {
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra("Name", productName);
+        intent.putExtra("URL", url);
+        startActivity(intent);
     }
 
     @Override
