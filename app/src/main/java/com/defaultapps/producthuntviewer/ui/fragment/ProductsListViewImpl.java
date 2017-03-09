@@ -12,7 +12,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -116,9 +115,6 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
             productsListPresenter.restoreViewState();
         } else {
             productsListPresenter.requestCache();
-        }
-        if (savedInstanceState != null) {
-            Log.d("LIST", "SAVEDSTATE");
         }
     }
 
@@ -232,7 +228,6 @@ public class ProductsListViewImpl extends Fragment implements ProductsListView, 
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
     }

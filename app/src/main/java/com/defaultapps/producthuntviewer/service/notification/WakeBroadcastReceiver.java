@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
-public class WakeBroadcastReciver extends BroadcastReceiver {
+public class WakeBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

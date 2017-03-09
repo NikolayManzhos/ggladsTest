@@ -3,7 +3,7 @@
     <CheckBoxPreference
         android:key="notification"
         android:title="Notifications"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
 
     <ListPreference
         android:key="notificationTime"

@@ -33,7 +33,7 @@
         <service android:name=".service.notification.NotificationService"
             android:exported="false" />
 
-        <receiver android:name=".service.notification.WakeBroadcastReciver">
+        <receiver android:name=".service.notification.WakeBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

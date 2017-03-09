@@ -90,7 +90,8 @@ public class ProductsListInteractor {
                 }
                 super.onPostExecute(aVoid);
             }
-        }.execute();
+        };
+        downloadPostsTask.execute();
     }
 
     public void loadDataFromCache() {
