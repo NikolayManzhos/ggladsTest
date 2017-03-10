@@ -9,6 +9,7 @@
         android:key="notificationTime"
         android:title="Time"
         android:entries="@array/time"
-        android:entryValues="@array/timeValues" />
+        android:entryValues="@array/timeValues"
+        android:defaultValue="@string/time_default"/>
 
 </PreferenceScreen>
