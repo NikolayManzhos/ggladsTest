@@ -108,5 +108,4 @@ public class ProductsDescriptionPresenterUnitTest {
         verify(productsListView).hideLoading();
         verify(productsListView).hideProductsList();
     }
-
 }

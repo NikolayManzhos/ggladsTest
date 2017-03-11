@@ -29,6 +29,7 @@ import retrofit2.Response;
 public class NotificationService extends IntentService {
 
     public static final int NOTIFICATION_ID = 2911;
+    private final String TAG = "NotificationService";
 
     @Inject
     SharedPreferencesManager sharedPreferencesManager;
@@ -59,20 +60,41 @@ public class NotificationService extends IntentService {
     }
 
     private void fillNotificationWithData() {
+        PostsResponse response = null;
         try {
-            PostsResponse response = localService.readResponseFromFile();
-            int lastSize = response.getPosts().size();
-            Response<PostsResponse> retrofitResponse = networkService.getNetworkCall().getPosts(getResources().getString(R.string.PRODUCT_HUNT_KEY), sharedPreferencesManager.getCategory()).execute();
-            PostsResponse networkResponse = retrofitResponse.body();
-            localService.writeResponseToFile(networkResponse);
-            if ((networkResponse.getPosts().size() - lastSize) == 1) {
-                Post latestProduct = networkResponse.getPosts().get(networkResponse.getPosts().size() - 1);
-                showNotification("New product available", latestProduct.getName() + " with " + latestProduct.getVotesCount() + " UpVotes!");
-            } else if ((networkResponse.getPosts().size() - lastSize) > 1) {
-                showNotification(String.valueOf(networkResponse.getPosts().size() - lastSize) + " new products available", "Check it out!");
-            }
+            response = localService.readResponseFromFile();
         } catch (IOException ex) {
+            Log.d(TAG, "No cache available.");
             ex.printStackTrace();
+        }
+        if (response == null) {
+            try {
+                Response<PostsResponse> retrofitResponse = networkService.getNetworkCall().getPosts(getResources().getString(R.string.PRODUCT_HUNT_KEY), sharedPreferencesManager.getCategory()).execute();
+                PostsResponse networkResponse = retrofitResponse.body();
+                localService.writeResponseToFile(networkResponse);
+                if (networkResponse.getPosts().size() == 1) {
+                    showNotification("New product available", networkResponse.getPosts().get(0).getName() + " with " + networkResponse.getPosts().get(0).getVotesCount() + " UpVotes!");
+                } else if (networkResponse.getPosts().size() > 1) {
+                    showNotification(String.valueOf(networkResponse.getPosts().size()) + " new products available.", "Check it out!");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            try {
+                int lastSize = response.getPosts().size();
+                Response<PostsResponse> retrofitResponse = networkService.getNetworkCall().getPosts(getResources().getString(R.string.PRODUCT_HUNT_KEY), sharedPreferencesManager.getCategory()).execute();
+                PostsResponse networkResponse = retrofitResponse.body();
+                localService.writeResponseToFile(networkResponse);
+                if ((networkResponse.getPosts().size() - lastSize) == 1) {
+                    Post latestProduct = networkResponse.getPosts().get(networkResponse.getPosts().size() - 1);
+                    showNotification("New product available", latestProduct.getName() + " with " + latestProduct.getVotesCount() + " UpVotes!");
+                } else if ((networkResponse.getPosts().size() - lastSize) > 1) {
+                    showNotification(String.valueOf(networkResponse.getPosts().size() - lastSize) + " new products available", "Check it out!");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
