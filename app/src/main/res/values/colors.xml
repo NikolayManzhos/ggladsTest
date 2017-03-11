@@ -7,4 +7,5 @@
 
     <color name="colorPrimaryDarkText">#b4000000</color>
     <color name="colorSecondaryDarkText">#8a000000</color>
+    <color name="colorDisabledDarkText">#7f000000</color>
 </resources>

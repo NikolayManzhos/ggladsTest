@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/place_holder"
         android:textSize="16sp"
+        android:textColor="@color/colorDisabledDarkText"
         android:layout_below="@+id/productDescription"
         android:layout_alignParentStart="true"
         android:layout_marginTop="19dp" />

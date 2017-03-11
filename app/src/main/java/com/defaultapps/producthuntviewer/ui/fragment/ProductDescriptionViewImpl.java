@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.defaultapps.producthuntviewer.R;
 import com.defaultapps.producthuntviewer.data.model.post.Post;
 import com.google.gson.Gson;
+import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,9 @@ public class ProductDescriptionViewImpl extends Fragment {
 
     @BindView(R.id.screenshot)
     ImageView screenshot;
+
+    @BindView(R.id.productUpVotes)
+    IconTextView upvotes;
 
 
     public interface ProductDescriptionViewCallback {
@@ -86,6 +90,7 @@ public class ProductDescriptionViewImpl extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .fitCenter()
                 .into(screenshot);
+        upvotes.setText("{md-thumb-up} " + post.getVotesCount());
     }
 
     @Override

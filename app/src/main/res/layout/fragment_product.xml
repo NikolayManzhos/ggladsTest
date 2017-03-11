@@ -48,11 +48,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/productUpVotes"
+                android:text="@string/place_holder"
+                android:textSize="16sp"
+                android:textColor="@color/colorDisabledDarkText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/getProduct"
                 android:text="@string/button_get"
-                android:background="@color/colorPrimary"
-                android:textColor="@color/colorIcons"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

@@ -11,6 +11,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener
     {
 
-        private CheckBoxPreference notificationStatus;
+        private SwitchPreference notificationStatus;
         private ListPreference hours;
 
         private Context context;
@@ -45,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.preferences_settings);
             context = getActivity().getApplicationContext();
 
-            notificationStatus = (CheckBoxPreference) getPreferenceManager().findPreference("notification");
+            notificationStatus = (SwitchPreference) getPreferenceManager().findPreference("notification");
             hours = (ListPreference) getPreferenceManager().findPreference("notificationTime");
 
             notificationStatus.setOnPreferenceChangeListener(this);
