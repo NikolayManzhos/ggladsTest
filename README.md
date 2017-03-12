@@ -11,4 +11,4 @@ Test task for Glads Group.
 <img src="http://puu.sh/uFpVa/4732436e53.png" width="250"/>
 <img src="http://puu.sh/uFqhb/3510c58fed.png" width="250"/>
 <img src="http://puu.sh/uFqiq/67296603f4.png" width="250"/>
-<img src="http://puu.sh/uFHGP/e0b5c66c76.png" width="250/>
+<img src="http://puu.sh/uFHGP/e0b5c66c76.png" width="250"/>
