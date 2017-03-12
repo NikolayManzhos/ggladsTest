@@ -15,7 +15,6 @@ import com.defaultapps.producthuntviewer.R;
 import com.defaultapps.producthuntviewer.data.model.post.Post;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

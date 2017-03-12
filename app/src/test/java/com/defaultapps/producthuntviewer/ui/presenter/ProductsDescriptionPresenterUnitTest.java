@@ -108,4 +108,20 @@ public class ProductsDescriptionPresenterUnitTest {
         verify(productsListView).hideLoading();
         verify(productsListView).hideProductsList();
     }
+
+    /**
+     * Config changes behavior.
+     * If taskRunning == false and errorVisible == false when latest data should be displayed.
+     */
+    @Test
+    public void restoreViewState() {
+        productsListPresenter.setTaskStatus(false);
+        productsListPresenter.setErrorVisibility(false);
+        productsListPresenter.restoreViewState();
+
+        verify(productsListView).showLoading();
+        verify(productsListView).hideProductsList();
+        verify(productsListView).hideError();
+        verify(productsListInteractor).loadDataFromCache();
+    }
 }

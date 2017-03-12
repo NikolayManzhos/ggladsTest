@@ -2,7 +2,6 @@ package com.defaultapps.producthuntviewer.di.component;
 
 import com.defaultapps.producthuntviewer.di.module.AppModule;
 import com.defaultapps.producthuntviewer.ui.activity.MainActivity;
-import com.defaultapps.producthuntviewer.ui.fragment.ProductDescriptionViewImpl;
 import com.defaultapps.producthuntviewer.ui.fragment.ProductsListViewImpl;
 
 import javax.inject.Singleton;

@@ -50,7 +50,7 @@ public class ProductsListPresenterImpl implements ProductsListPresenter, Product
                 view.hideLoading();
                 view.hideProductsList();
             } else {
-                productsListInteractor.loadDataFromCache();
+                requestCache();
             }
         }
     }
@@ -59,17 +59,21 @@ public class ProductsListPresenterImpl implements ProductsListPresenter, Product
     public void requestUpdate() {
         setTaskStatus(true);
         setErrorVisibility(false);
-        view.showLoading();
-        view.hideProductsList();
-        view.hideError();
+        if (view != null) {
+            view.showLoading();
+            view.hideProductsList();
+            view.hideError();
+        }
         productsListInteractor.loadPostsData();
     }
 
     @Override
     public void requestCache() {
-        view.showLoading();
-        view.hideProductsList();
-        view.hideError();
+        if (view != null) {
+            view.showLoading();
+            view.hideProductsList();
+            view.hideError();
+        }
         productsListInteractor.loadDataFromCache();
     }
 

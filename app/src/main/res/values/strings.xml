@@ -16,7 +16,7 @@
 
     <!--Entries for time preference -->
     <string-array name="time">
-        <item>1 Hours</item>
+        <item>1 Hour</item>
         <item>2 Hours</item>
         <item>4 Hours</item>
         <item>8 Hours</item>

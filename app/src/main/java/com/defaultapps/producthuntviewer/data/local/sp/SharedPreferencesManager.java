@@ -46,14 +46,6 @@ public class SharedPreferencesManager {
         sharedPreferencesHelper.putInt(CATEGORY_NUMB, categoryNumber);
     }
 
-    public boolean getForceLoadStatus() {
-        return sharedPreferencesHelper.getBoolean(FORCE_LOAD);
-    }
-
-    public void setForceLoadStatus(boolean loadStatus) {
-        sharedPreferencesHelper.putBoolean(FORCE_LOAD, loadStatus);
-    }
-
     public boolean getFirstTimeLaunch() {
         return sharedPreferencesHelper.getBoolean(FIRST_TIME_USER);
     }
