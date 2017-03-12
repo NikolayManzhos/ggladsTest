@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 
 public class WakeBroadcastReceiver extends BroadcastReceiver {
@@ -15,14 +16,15 @@ public class WakeBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
         if (sharedPreferences.getBoolean("notification", false)) {
+            Log.d("WakeBroadcastReceiver", "started");
             Intent notificationIntent = new Intent(context, NotificationService.class);
             PendingIntent pendingIntent = PendingIntent.getService(context, NotificationService.NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.cancel(pendingIntent);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), Long.getLong(sharedPreferences.getString("notificationTime", "3600000")).longValue(), pendingIntent);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), Long.parseLong(sharedPreferences.getString("notificationTime", "3600000")), pendingIntent);
         }
     }
 }
