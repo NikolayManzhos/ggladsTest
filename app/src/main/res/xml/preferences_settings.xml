@@ -2,12 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:key="notification"
-        android:title="Notifications"
+        android:title="@string/notifications"
         android:defaultValue="false"/>
 
     <ListPreference
         android:key="notificationTime"
-        android:title="Time"
+        android:title="@string/timeInterval"
+        android:summary="@string/timeIntervalDescription"
         android:entries="@array/time"
         android:entryValues="@array/timeValues"
         android:defaultValue="@string/time_default"/>

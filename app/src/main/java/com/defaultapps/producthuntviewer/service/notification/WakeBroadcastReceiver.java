@@ -16,7 +16,7 @@ public class WakeBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean("notifications", false)) {
+        if (sharedPreferences.getBoolean("notification", false)) {
             Intent notificationIntent = new Intent(context, NotificationService.class);
             PendingIntent pendingIntent = PendingIntent.getService(context, NotificationService.NOTIFICATION_ID, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 

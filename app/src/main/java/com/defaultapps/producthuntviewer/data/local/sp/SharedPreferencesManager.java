@@ -14,7 +14,6 @@ public class SharedPreferencesManager {
     private final String CACHE_TIME = "cache_exp_time";
     private final String CATEGORY_CODE = "category_code";
     private final String CATEGORY_NUMB = "category_number";
-    private final String FORCE_LOAD = "force_load";
     private final String FIRST_TIME_USER = "first_time";
 
     @Inject

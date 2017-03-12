@@ -15,6 +15,7 @@
     </array>
 
     <!--Entries for time preference -->
+    <string name="notifications">Notifications</string>
     <string-array name="time">
         <item>1 Hour</item>
         <item>2 Hours</item>
@@ -23,6 +24,8 @@
     </string-array>
 
     <!--Values for time preference in ms-->
+    <string name="timeInterval">Interval</string>
+    <string name="timeIntervalDescription">Customize time gap between notifications.</string>
     <string-array name="timeValues">
         <item>3600000</item>
         <item>7200000</item>
