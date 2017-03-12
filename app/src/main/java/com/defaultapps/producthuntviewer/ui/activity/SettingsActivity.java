@@ -60,8 +60,6 @@ public class SettingsActivity extends AppCompatActivity {
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             PendingIntent pendingIntent = PendingIntent.getService(context, NotificationService.NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-            String test = sharedPreferences.getString("notificationTime", "3600000");
-            Log.d("TEST", test);
             if ((boolean) newValue) {
                 alarmManager.cancel(pendingIntent);
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),  Long.valueOf(sharedPreferences.getString("notificationTime", "3600000")).longValue() , pendingIntent);

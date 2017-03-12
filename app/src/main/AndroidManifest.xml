@@ -24,11 +24,11 @@
         <activity android:name=".ui.activity.WebViewActivity"
             android:configChanges="orientation|screenSize"
             android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/WebViewTheme"/>
+            android:theme="@style/ActionBarAppTheme"/>
 
         <activity android:name=".ui.activity.SettingsActivity"
             android:parentActivityName=".ui.activity.MainActivity"
-            android:theme="@style/WebViewTheme" />
+            android:theme="@style/ActionBarAppTheme" />
 
         <service android:name=".service.notification.NotificationService"
             android:exported="false" />
